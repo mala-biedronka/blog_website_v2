@@ -1,0 +1,23 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+.content {
+    min-height: 100%;
+    margin: 0 auto -50px;
+}
+
+footer {
+    height: 50px;
+    background-color: #78C2AD;
+    color: #fff;
+    text-align: center;
+}
+
+.top-container {
+    margin-top: 40px;
+}
+
+.progress {
+    margin-top: 40px;
+}
