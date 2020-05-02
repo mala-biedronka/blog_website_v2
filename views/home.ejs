@@ -1,7 +1,7 @@
 <%- include("partials/header"); -%>
 
 <div class="container top-container">
-    <h1>Hi there, guys!</h1>
+    <h1 class="text-secondary">Hi there, guys!</h1>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
         magna aliqua. Ullamcorper eget nulla facilisi etiam dignissim diam. Pretium vulputate sapien nec sagittis
         aliquam malesuada bibendum arcu. Dolor sit amet consectetur adipiscing elit duis. Morbi tempus iaculis urna id
@@ -12,11 +12,33 @@
         dignissim cras tincidunt lobortis. Sed vulputate odio ut enim blandit. Egestas maecenas pharetra convallis
         posuere morbi leo urna. Condimentum lacinia quis vel eros donec ac odio tempor orci. At volutpat diam ut
         venenatis. Ornare aenean euismod elementum nisi quis eleifend quam.</p>
-    <a href="/compose"><button type="button" class="btn btn-secondary">Compose a new post</button></a>
+    <a href="/compose"><button type="button" class="btn btn-secondary compose">Compose a new post</button></a>
 </div>
-<div class="progress">
-    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
-</div>
+
+<!--Adding a new post-->
+<%for (let i = 0;  i < newPostAdded.length; i++) {%>
+    <div class="container">
+        <h1><%= newPostAdded[i].title %></h1>
+        <p><%= newPostAdded[i].content.substring(0, 300) + " ..." %><a href="posts/<%= newPostAdded[i].title %>">Read more</a></p>
+    </div>
+<%}%>
 
 
 <%- include("partials/footer"); -%>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

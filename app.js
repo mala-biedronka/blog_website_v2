@@ -8,9 +8,20 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 
+const posts = [];
+
 //Get requests
 app.get("/", function (req, res) {
-    res.render("home");
+    res.render("home", {newPostAdded: posts});
+});
+
+//Get request using express route parameters
+app.get("/posts/:name", function (req, res) {
+    for (let i = 0; i < posts.length; i++) {
+        if (posts[i].title === req.params.name) {
+            res.render("posts", {newPostTitle: posts[i].title, newPostContent: posts[i].content});
+        }
+    }
 });
 
 app.get("/compose", function (req, res) {
@@ -26,6 +37,16 @@ app.get("/contact", function (req, res) {
 });
 
 //Post requests
+app.post("/", function (req, res) {
+    let newPost = {
+        title: req.body.postTitle,
+        content: req.body.postContent
+    };
+    posts.push(newPost);
+    res.redirect("/");
+});
+
+
 
 app.listen(3000, function () {
     console.log("The server is running on port 3000");
