@@ -19,7 +19,7 @@
 <%for (let i = 0;  i < newPostAdded.length; i++) {%>
     <div class="container">
         <h1><%= newPostAdded[i].title %></h1>
-        <p><%= newPostAdded[i].content.substring(0, 300) + " ..." %><a href="posts/<%= newPostAdded[i].title %>">Read more</a></p>
+        <p><%= newPostAdded[i].content.substring(0, 300) + " ..." %><a href="posts/<%= newPostAdded[i].id %>">Read more</a></p>
     </div>
 <%}%>
 

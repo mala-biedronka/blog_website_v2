@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
+const { v4: uuidv4 } = require("uuid");
 
 const app = express();
 
@@ -16,12 +17,14 @@ app.get("/", function (req, res) {
 });
 
 //Get request using express route parameters
-app.get("/posts/:name", function (req, res) {
+app.get("/posts/:id", function (req, res) {
     for (let i = 0; i < posts.length; i++) {
-        if (posts[i].title === req.params.name) {
+        if (posts[i].id === req.params.id) {
             res.render("posts", {newPostTitle: posts[i].title, newPostContent: posts[i].content});
+            return;
         }
     }
+    res.status(404).send();
 });
 
 app.get("/compose", function (req, res) {
@@ -39,14 +42,13 @@ app.get("/contact", function (req, res) {
 //Post requests
 app.post("/", function (req, res) {
     let newPost = {
+        id: uuidv4(),
         title: req.body.postTitle,
         content: req.body.postContent
     };
     posts.push(newPost);
     res.redirect("/");
 });
-
-
 
 app.listen(3000, function () {
     console.log("The server is running on port 3000");
